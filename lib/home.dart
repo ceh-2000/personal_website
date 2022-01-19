@@ -1,100 +1,57 @@
+import 'package:clare_website/projects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<Home> createState() => _Home();
-}
-
-class _Home extends State<Home> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text("Clare Heinbaugh"),
-          centerTitle: false,
-          actions: <Widget>[
-            TextButton(
-              child: Text('Home',
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 20)),
-              onPressed: () {},
-            ), //Icon
-            TextButton(
-              child: Text('Projects',
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 20)),
-              onPressed: () {},
-            ),
-            TextButton(
-              child: Text('Experience',
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 20)),
-              onPressed: () {},
-            ),
-            TextButton(
-              child: Text('Resume',
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 20)),
-              onPressed: () {},
-            ), // Button
-          ], //<Widget>[]
-          leading: Container(
-            margin: const EdgeInsets.all(5.0),
-            child: const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/clare_avatar.png'),
-            ),
+Widget Home(context) {
+  return SingleChildScrollView(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height - 100,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage('assets/images/clare_background.png')),
           ),
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          elevation: 50.0,
-          toolbarHeight: 60,
-          titleTextStyle: TextStyle(
-              color: Theme.of(context).colorScheme.secondary, fontSize: 40)),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width * 0.5,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage('assets/images/clare_background.png')),
-              ),
-            ),
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
         ),
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+        SizedBox(height: 40),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Container(
+                    margin: EdgeInsets.all(20.0),
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: Text(
+                      'Hello! I am a junior at William and Mary studying computer science and physics. I\'m from Springfield, VA and recently graduated from Thomas Jefferson High School for Science and Technology. After making my first rock, paper, scissors app in 7th grade, I never looked back and devoted my high school and college career to taking as many computer science classes as possible and creating outside opportunities to make even more apps, websites, and scripts. Outside of coding, I enjoy physics, dance, and drinking as many chai lattes as my university dining plan will allow.',
+                      style: TextStyle(fontSize: 20),
+                    )),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                    margin: EdgeInsets.all(20.0),
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: Text(
+                      'Fast facts\nabout\nme',
+                      style: TextStyle(fontSize: 20),
+                    )),
+              )
+            ]),
+        SizedBox(height: 40),
+        Container(
+          width: 400,
+          height: 400,
+          child: CircleAvatar(
+            backgroundImage: AssetImage('assets/images/clare_avatar.png'),
+          ),
+        ),
+        SizedBox(height: 40),
+      ],
+    ),
+  );
 }
