@@ -1,6 +1,7 @@
 import 'package:clare_website/projects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 Widget Home(context) {
   return SingleChildScrollView(
@@ -36,7 +37,7 @@ Widget Home(context) {
                 child: Container(
                     margin: EdgeInsets.all(20.0),
                     width: MediaQuery.of(context).size.width / 2,
-                    child: Text(
+                    child: const Text(
                       'Fast facts\nabout\nme',
                       style: TextStyle(fontSize: 20),
                     )),
@@ -50,7 +51,7 @@ Widget Home(context) {
             backgroundImage: AssetImage('assets/images/clare_avatar.png'),
           ),
         ),
-        SizedBox(height: 40),
+        SizedBox(height: 40)
       ],
     ),
   );

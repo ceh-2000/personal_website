@@ -2,6 +2,7 @@ import 'package:clare_website/experience.dart';
 import 'package:clare_website/projects.dart';
 import 'package:clare_website/resume.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import 'home.dart';
 
@@ -20,12 +21,19 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           brightness: Brightness.light,
-          primaryColor: Colors.purple,
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)
-              .copyWith(secondary: Colors.lightGreenAccent)
-          // primaryColorLight: Colors.p,
-          //   primaryColorDark
-          ),
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.blueGrey,
+            primaryColorDark: Colors.blueGrey,
+            accentColor: Colors.greenAccent,
+            cardColor: Colors.cyan,
+            backgroundColor: Colors.cyanAccent,
+            errorColor: Colors.redAccent,
+          ).copyWith(secondary: Colors.cyan),
+          textTheme: const TextTheme(
+            headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold, color: Colors.white),
+            headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic, color: Colors.white),
+            bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind', color: Colors.black),
+          )),
       home: const Main(),
     );
   }
@@ -41,15 +49,16 @@ class Main extends StatefulWidget {
 class _Main extends State<Main> {
   Widget _curDisplay = const Center(child: CircularProgressIndicator());
 
-  void _updatePage(Widget newPage){
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        ?.addPostFrameCallback((_) => _updatePage(Home(context)));
+  }
+
+  void _updatePage(Widget newPage) {
     setState(() {
       _curDisplay = newPage;
     });
-  }
-
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _updatePage(Home(context)));
   }
 
   @override
@@ -62,7 +71,7 @@ class _Main extends State<Main> {
               TextButton(
                 child: Text('Home',
                     style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.background,
                         fontSize: 20)),
                 onPressed: () {
                   _updatePage(Home(context));
@@ -71,7 +80,7 @@ class _Main extends State<Main> {
               TextButton(
                 child: Text('Projects',
                     style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.background,
                         fontSize: 20)),
                 onPressed: () {
                   _updatePage(Projects(context));
@@ -80,7 +89,7 @@ class _Main extends State<Main> {
               TextButton(
                 child: Text('Experience',
                     style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.background,
                         fontSize: 20)),
                 onPressed: () {
                   _updatePage(Experience(context));
@@ -89,11 +98,10 @@ class _Main extends State<Main> {
               TextButton(
                 child: Text('Resume',
                     style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.background,
                         fontSize: 20)),
                 onPressed: () {
                   _updatePage(Resume(context));
-
                 },
               ), // Button
             ], //<Widget>[]
@@ -107,7 +115,7 @@ class _Main extends State<Main> {
             elevation: 50.0,
             toolbarHeight: 60,
             titleTextStyle: TextStyle(
-                color: Theme.of(context).colorScheme.secondary, fontSize: 40)),
+                color: Theme.of(context).colorScheme.background, fontSize: 40)),
         body: _curDisplay);
   }
 }
